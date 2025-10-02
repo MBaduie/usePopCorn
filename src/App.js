@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { tempMovieData, tempWatchedData } from "./data";
+import { NavBar, MoviesBox, WatchedBox } from "./components";
+import Main from "./UI/Main/Main";
+import MainLayout from "./layout/MainLayout/MainLayout";
 
-function App() {
+export default function App() {
+  const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
+  // const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainLayout>
+      <NavBar movies={movies} />
+      <Main>
+        <MoviesBox movies={movies} />
+        <WatchedBox watched={watched} />
+      </Main>
+    </MainLayout>
   );
 }
-
-export default App;
