@@ -11,13 +11,16 @@ import Loader from "./UI/Loader/Loader";
 import Error from "./UI/Error/Error";
 import MoviesList from "./components/MoviesList/MoviesList";
 import Box from "./components/Box/Box";
-import MovieSummary from "./components/MovieSummary/MovieSummary";
+// import MovieSummary from "./components/MovieSummary/MovieSummary";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 
 // import axios from "axios";
 
 const API_KEY = "65a965f";
-// const tempQuery = "saw"; // Example query, can be changed
+
+// const tempQuery = "saw";
+
+// Example query, can be changed
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData || []);
@@ -36,25 +39,9 @@ export default function App() {
   };
 
   const handleAddWatchedMovie = (movie) => {
+    if (watched.some((m) => m.imdbID === movie.imdbID)) return;
     setWatched((watched) => [...watched, movie]);
   };
-
-  // function handleAdd() {
-  //   const newWatchedMovie = {
-  //     omdbID: selectedId,
-  //     title,
-  //     year,
-  //     poster,
-  //     runtime,
-  //     imdbRating: Number(imdbRating),
-  //     plot,
-  //     released,
-  //     actors,
-  //     director,
-  //     genre,
-  //   };
-  //   return newWatchedMovie;
-  // }
 
   // -------------- Get Movies UseEffects-----------------
   useEffect(() => {

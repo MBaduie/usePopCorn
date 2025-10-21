@@ -7,10 +7,41 @@ const API_KEY = "65a965f";
 const MovieDetails = ({
   selectedId,
   handleCloseMovie,
-  handelAddWatchedMovie,
+  handleAddWatchedMovie,
 }) => {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    Title: title,
+    Year: year,
+    Poster: poster,
+    Runtime: runtime,
+    imdbRating,
+    Plot: plot,
+    Released: released,
+    Actors: actors,
+    Director: director,
+    Genre: genre,
+  } = movie;
+
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedId,
+      title,
+      year,
+      poster,
+      runtime: Number(runtime.split(" ")[0]),
+      imdbRating: Number(imdbRating),
+      plot,
+      released,
+      actors,
+      director,
+      genre,
+    };
+    handleAddWatchedMovie(newWatchedMovie);
+    handleCloseMovie();
+  }
 
   // -------- Get Movie Details UseEffects-------------
   useEffect(() => {
@@ -40,7 +71,8 @@ const MovieDetails = ({
       ) : (
         <SelectedMovie
           movie={movie}
-          onAddWatchedMovie={handelAddWatchedMovie}
+          selectedId={selectedId}
+          handleAdd={handleAdd}
         />
       )}
     </div>

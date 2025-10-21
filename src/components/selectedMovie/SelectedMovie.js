@@ -1,4 +1,4 @@
-const SelectedMovie = ({ movie, onAddWatchedMovie }) => {
+const SelectedMovie = ({ movie, handleAdd, selectedId }) => {
   const {
     Title,
     Year,
@@ -11,6 +11,8 @@ const SelectedMovie = ({ movie, onAddWatchedMovie }) => {
     Director,
     Genre,
   } = movie;
+
+  // ----------- Add Movie watched -----------
 
   return (
     <>
@@ -28,8 +30,8 @@ const SelectedMovie = ({ movie, onAddWatchedMovie }) => {
         </div>
       </header>
       <div>
-        <button className="btn-add" onClick={() => movie}>
-          + Add to list
+        <button className="btn-add" onClick={handleAdd}>
+          Add to List
         </button>
       </div>
       <section>
